@@ -1,9 +1,6 @@
-import urllib
-
-from flask import Flask, render_template, request, jsonify, redirect
+from flask import Flask, render_template, request, redirect
 
 from api.apiController import get_data
-
 from models.mainman import mailman
 
 app = Flask(__name__)
@@ -53,5 +50,3 @@ def contact():
 if __name__ == "__main__":
     app.env = "development"
     app.run(debug=True)
-
-
