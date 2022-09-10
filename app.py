@@ -48,6 +48,5 @@ def contact():
 # app.add_url_rule('/get_my_ip', 'getIP', get_data)
 
 if __name__ == "__main__":
-    #app.env = "development"
-    app.debug = True
+    app.debug = False
     app.run(debug=True)
