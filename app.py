@@ -7,6 +7,8 @@ app = Flask(__name__)
 
 pageTitle = "GEOLOC APP"
 
+DEBUG = False
+
 
 # Pages
 @app.route('/', methods=['GET', 'POST'])
@@ -48,5 +50,6 @@ def contact():
 # app.add_url_rule('/get_my_ip', 'getIP', get_data)
 
 if __name__ == "__main__":
-    app.debug = False
-    app.run(debug=True)
+    if DEBUG:
+        app.debug = False
+        app.run(debug=True)
