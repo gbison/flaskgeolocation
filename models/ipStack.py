@@ -1,11 +1,11 @@
-import requests
+from requests import get
 
 '''
 Author: Bryan Ison
 Date: 2/18/2021
 
 Description:
-Ip Stack model represents the json data aquired from the user agent information based on IP.
+Ip Stack model represents the json data acquired from the user agent information based on IP.
 That info is encoded and returned to us as a json payload.
 '''
 
@@ -34,7 +34,7 @@ class IpStack:
         print("Calling URL:" + self.callUrl)
 
     def getData(self):
-        response = requests.get(self.callUrl)
+        response = get(self.callUrl)
         json_data = response.json()
         self.latitude = str(json_data['latitude']).strip()
         self.longitude = str(json_data['longitude']).strip()

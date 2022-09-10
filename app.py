@@ -1,7 +1,7 @@
 from flask import Flask, render_template, request, redirect
 
-from api.apiController import get_data
-from models.mainman import mailman
+from models import mainman
+from api import apiController
 
 app = Flask(__name__)
 
@@ -16,8 +16,8 @@ def home():
         if request.form.get('Run Map') == 'Run Map':
             # pass
             print("POST: Running map...")
-            data = get_data()
-            mailsys = mailman()
+            data = apiController.get_data()
+            mailsys = mainman.mailman()
             mailsys.mail_setup()
             if mailsys.mail_login():
                 mymsg = mailsys.build_mail()
@@ -30,7 +30,7 @@ def home():
             return redirect(data[1].mapURL)
     elif request.method == 'GET':
         print("No postback, rendering base....")
-    return render_template("home.html", data=get_data())
+    return render_template("home.html", data=apiController.get_data())
     # return render_template("home.html", data=get_my_ip())
 
 

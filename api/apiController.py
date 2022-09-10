@@ -1,5 +1,4 @@
-from flask import app, request
-
+from flask import request
 import models.ipStack
 
 '''
@@ -13,7 +12,6 @@ Calls up the IP stack to deliver json data to the frontend.
 
 # ALL SERVICE ENDPOINTS STAY HERE IN API
 def get_data():
-    payload = ""
     print("Getting ip....")
     if request.environ.get('HTTP_X_FORWARDED_FOR') is None:
         payload = request.environ['REMOTE_ADDR']
@@ -31,7 +29,6 @@ def get_data():
 
 
 def get_payload():
-    payload = ""
     print("Getting ip....")
     if request.environ.get('HTTP_X_FORWARDED_FOR') is None:
         payload = request.environ['REMOTE_ADDR']
