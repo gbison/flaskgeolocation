@@ -28,3 +28,17 @@ def get_data():
     # load_map(data.latitude, data.longitude)
     print("PayLoad: " + str(payload))
     return payload, data
+
+
+def get_payload():
+    payload = ""
+    print("Getting ip....")
+    if request.environ.get('HTTP_X_FORWARDED_FOR') is None:
+        payload = request.environ['REMOTE_ADDR']
+    else:
+        payload = request.environ['HTTP_X_FORWARDED_FOR']  # if behind a proxy
+
+    # finally open the map while returning payload
+    # load_map(data.latitude, data.longitude)
+    print("PayLoad: " + str(payload))
+    return payload
