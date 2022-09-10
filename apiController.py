@@ -1,5 +1,5 @@
 from flask import request
-import models.ipStack
+import ipStack
 
 '''
 Author: Bryan Ison
@@ -19,7 +19,7 @@ def get_data():
         payload = request.environ['HTTP_X_FORWARDED_FOR']  # if behind a proxy
 
     print(payload)
-    data = models.ipStack.IpStack(payload)
+    data = ipStack.IpStack(payload)
     payload = data.getData()
 
     # finally open the map while returning payload

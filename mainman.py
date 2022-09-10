@@ -1,8 +1,7 @@
 import configparser
 import smtplib
-import io
 
-from models.mailmessage import mailmessage
+from mailmessage import mailmessage
 
 
 class mailman:

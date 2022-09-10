@@ -1,7 +1,7 @@
 from flask import Flask, render_template, request, redirect
 
-from models import mainman
-from api import apiController
+import apiController
+import mainman
 
 app = Flask(__name__)
 
@@ -48,5 +48,6 @@ def contact():
 # app.add_url_rule('/get_my_ip', 'getIP', get_data)
 
 if __name__ == "__main__":
-    app.env = "development"
+    #app.env = "development"
+    app.debug = True
     app.run(debug=True)
