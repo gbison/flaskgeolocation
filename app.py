@@ -7,32 +7,33 @@ app = Flask(__name__)
 
 pageTitle = "GEOLOC APP"
 
-DEBUG = False
+DEBUG = True
 
 
 # Pages
 @app.route('/', methods=['GET', 'POST'])
 def home():
-    print(request.method)
-    if request.method == 'POST':
-        if request.form.get('Run Map') == 'Run Map':
-            # pass
-            print("POST: Running map...")
-            data = apiController.get_data()
-            mailsys = mainman.mailman()
-            mailsys.mail_setup()
-            if mailsys.mail_login():
-                mymsg = mailsys.build_mail()
-                mymsg.set_from('hennesygts@gmail.com')
-                mymsg.set_to('hennesygts@gmail.com')
-                mymsg.set_subject('JSON Payload Data')
-                mymsg.set_msg(str(data))
-                mailsys.mail_send(mymsg.msg)
-                mailsys.smtp.close()
-            return redirect(data[1].mapURL)
-    elif request.method == 'GET':
-        print("No postback, rendering base....")
-    return render_template("home.html", data=apiController.get_data())
+    return render_template("about.html")
+    # print(request.method)
+    # if request.method == 'POST':
+    #     if request.form.get('Run Map') == 'Run Map':
+    #         # pass
+    #         print("POST: Running map...")
+    #         data = apiController.get_data()
+    #         mailsys = mainman.mailman()
+    #         mailsys.mail_setup()
+    #         if mailsys.mail_login():
+    #             mymsg = mailsys.build_mail()
+    #             mymsg.set_from('hennesygts@gmail.com')
+    #             mymsg.set_to('hennesygts@gmail.com')
+    #             mymsg.set_subject('JSON Payload Data')
+    #             mymsg.set_msg(str(data))
+    #             mailsys.mail_send(mymsg.msg)
+    #             mailsys.smtp.close()
+    #         return redirect(data[1].mapURL)
+    # elif request.method == 'GET':
+    #     print("No postback, rendering base....")
+    return render_template("home.html") #data=apiController.get_data())
     # return render_template("home.html", data=get_my_ip())
 
 
@@ -51,5 +52,5 @@ def contact():
 
 if __name__ == "__main__":
     if DEBUG:
-        app.debug = False
+        app.debug = True
         app.run(debug=True)
