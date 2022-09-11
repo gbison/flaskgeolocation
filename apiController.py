@@ -12,7 +12,7 @@ Calls up the IP stack to deliver json data to the frontend.
 
 # ALL SERVICE ENDPOINTS STAY HERE IN API
 def get_data():
-    print("Getting ip....")
+    print("Getting ip data....")
     if request.environ.get('HTTP_X_FORWARDED_FOR') is None:
         payload = request.environ['REMOTE_ADDR']
     else:

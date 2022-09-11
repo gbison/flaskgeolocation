@@ -1,58 +1,60 @@
 {%extends "layout.html"%}
 {%block mainbody%}
-<div class="homepage">
-    <h1>Python Training - GEOCODE</h1>
-    <hr>
-    <!---
-    <a href="{{ url_for('home') }}">Home |</a>
-    <a href="{{ url_for('about') }}">About |</a>
-    <a href="{{ url_for('contact') }}">Contact</a>
--->
-    </br>
-    <h1>REVERSE GEOCODE DATA</h1>
-    <h2>IP Address: {{data[0].ip}}</h2>
-    <h2>Latitude: {{ data[0].latitude }}</h2>
-    <h2>Longitude: {{ data[0].longitude }}</h2>
-
-    </br>
-    <!-- Manual link for updating the data (it autoloads on page refresh) -->
-    <div>
-        <h1>LOCATION INFORMATION</h1>
-        <ol>
-            <li>Continent: {{data[0].continent_name}}</li>
-            <li>Country: {{data[0].country_name}}</li>
-            <li>Capital: {{data[0].location.capital}}</li>
-            <li>State: {{data[0].region_name}}</li>
-            <li>City: {{data[0].city}}</li>
-            <li>Zip: {{data[0].zip}}</li>
-        </ol>
-    </div>
-
-    <br>
-    <!-- This uses the initial geocode data to map the approximate location. -->
-    <div>
-        <h1>Location Mapper</h1>
-        <p>
-            The map link below can be used to pin point a visual representation based on the geocode payload information.
-            <br>
-            Further information is available in the details section of the map about the area region.
-        </p>
-        <a href="{{data[1].mapURL}}" target="_blank">Run Map</a> (Opens a new window...)
+<main class="mainback">
+    <div class="homepage">
+        <h1>GEOLOCATION INTEL</h1>
+        <hr>
+        <!---
+        <a href="{{ url_for('home') }}">Home |</a>
+        <a href="{{ url_for('about') }}">About |</a>
+        <a href="{{ url_for('contact') }}">Contact</a>
+    -->
         </br>
+        <h1>REVERSE GEOCODE DATA</h1>
+        <h2>IP Address: {{data[0].ip}}</h2>
+        <h2>Latitude: {{ data[0].latitude }}</h2>
+        <h2>Longitude: {{ data[0].longitude }}</h2>
+
         </br>
-        Maybe a button instead....(although, it may remotely send all your data to my email for validation - ;-))
-        <form method="post" target="_blank">
-            <input type="submit" value="Run Map" name="Run Map"/>
-        </form>
+        <!-- Manual link for updating the data (it autoloads on page refresh) -->
+        <div>
+            <h1>LOCATION INFORMATION</h1>
+            <ol>
+                <li>Continent: {{data[0].continent_name}}</li>
+                <li>Country: {{data[0].country_name}}</li>
+                <li>Capital: {{data[0].location.capital}}</li>
+                <li>State: {{data[0].region_name}}</li>
+                <li>City: {{data[0].city}}</li>
+                <li>Zip: {{data[0].zip}}</li>
+            </ol>
+        </div>
 
-    </div>
+        <br>
+        <!-- This uses the initial geocode data to map the approximate location. -->
+        <div>
+            <h1>Location Mapper</h1>
+            <p>
+                The map link below can be used to pin point a visual representation based on the geocode payload information.
+                <br>
+                Further information is available in the details section of the map about the area region.
+            </p>
+            <a href="{{data[1].mapURL}}" target="_blank">Run Map</a> (Opens a new window...)
+            </br>
+            </br>
+            Maybe a button instead....(although, it may remotely send all your data to my email for validation - ;-))
+            <form method="post" target="_blank">
+                <input type="submit" value="Run Map" name="Run Map"/>
+            </form>
 
-    </br>
-    <div>
-        <h3>Raw JSON</h3>
-        <textarea style="width:512px; height:128px">
-            {{data[0]}}
-        </textarea>
+        </div>
+
+        </br>
+        <div>
+            <h3>Raw JSON</h3>
+            <textarea style="width:512px; height:128px">
+                {{data[0]}}
+            </textarea>
+        </div>
     </div>
-</div>
+</main>
 {%endblock%}

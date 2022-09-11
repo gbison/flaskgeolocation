@@ -21,6 +21,7 @@ class IpStack:
     mapHtmlLink = ''''''
 
     def __init__(self, ippayload):
+        print('Initial Payload: ' + ippayload)
         result = ippayload.find(',')  # implementing this fix due to google cloud passing multiple ip addresses!
 
         # If the cloud proposes multiple ips, only grab the first one.
@@ -36,6 +37,7 @@ class IpStack:
     def getData(self):
         response = get(self.callUrl)
         json_data = response.json()
+        print("JSON Payload Response: " + str(json_data))
         self.latitude = str(json_data['latitude']).strip()
         self.longitude = str(json_data['longitude']).strip()
         self.mapURL = self.load_map_url()
