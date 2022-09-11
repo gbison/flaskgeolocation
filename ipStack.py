@@ -29,6 +29,11 @@ class IpStack:
             ippayload = ippayload[0:result]
             print("Parsing multiple ips...")
             print("Final IP: " + ippayload)
+        else:
+            result = ippayload.find(':')
+            if result != -1:
+                ippayload = ippayload[0:result]
+                print("Removing PORT: " + ippayload)
 
         self.ipAddress = ippayload
         self.callUrl = self.accessUrl + self.ipAddress + '?access_key=' + self.accessKey
