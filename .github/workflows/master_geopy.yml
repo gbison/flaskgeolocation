@@ -54,10 +54,10 @@ jobs:
           name: python-app
           path: .
 
-    - name: 'Deploy to Azure Web App'
-      uses: azure/webapps-deploy@v2
-      id: deploy-to-webapp
-      with:
-        app-name: 'geopy'
-        slot-name: 'production'
-        publish-profile: ${{ secrets.AzureAppService_PublishProfile_fd7cf67739b74b3f8dd1e13b337232f6 }}
+      - name: 'Deploy to Azure Web App'
+        uses: azure/webapps-deploy@v2
+        id: deploy-to-webapp
+        with:
+          app-name: 'geopy'
+          slot-name: 'production'
+          publish-profile: ${{ secrets.AzureAppService_PublishProfile_fd7cf67739b74b3f8dd1e13b337232f6 }}
