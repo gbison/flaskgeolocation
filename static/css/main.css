@@ -5,7 +5,7 @@ html {
 body {
     /* Margin bottom by footer height */
     margin-bottom: 60px;
-    background-image: url("../Images/wotlkbg2.jpg");
+    background-image: url("..\images\wotlkbg2.jpg");
 }
 .footer {
     /*position: absolute;*/
