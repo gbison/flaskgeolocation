@@ -1,60 +1,133 @@
 {%extends "layout.html"%}
 {%block mainbody%}
-<main class="mainback">
-    <div class="homepage">
-        <h1>GEOLOCATION INTEL</h1>
-        <h3><i>Get the code <a href="https://github.com/gbison/flaskgeolocation">HERE!!</a></i></h3>
+
+<!-- Head Content-->
+<div class="container-fluid py-md-4">
+    <header class="p-5 rounded-3" style="background-color: lightslategray; padding: 5px;">
+        <h1>PYGEO - Geocoding</h1>
+        <h3><i>Get the code <a href="https://github.com/gbison/flaskgeolocation"
+                               class="btn btn-secondary">HERE!!</a></i></h3>
         <hr>
-        <!---
-        <a href="{{ url_for('home') }}">Home |</a>
-        <a href="{{ url_for('about') }}">About |</a>
-        <a href="{{ url_for('contact') }}">Contact</a>
-    -->
-        </br>
-        <h1>REVERSE GEOCODE DATA</h1>
-        <h2>IP Address: {{data[0].ip}}</h2>
-        <h2>Latitude: {{ data[0].latitude }}</h2>
-        <h2>Longitude: {{ data[0].longitude }}</h2>
+        <p>
+            This web application attempts to obtain information from its viewer on where they are in the world and
+            provides GEO coded information for review.
+        </p>
+        <p>
+            This site was written in Python using Flask, HTML5 & Bootstrap 5
+        </p>
+        <p>
+            <img src="/static/images/python.png" class="img-fluid">
+            <img src="/static/images/html5.png" class="img-fluid">
+            <img src="/static/images/flask.png" class="img-fluid">
+            <img src="/static/images/bootstrap.png" class="img-fluid">
+        </p>
+    </header>
+</div>
 
-        </br>
-        <!-- Manual link for updating the data (it autoloads on page refresh) -->
-        <div>
-            <h1>LOCATION INFORMATION</h1>
-            <ol>
-                <li>Continent: {{data[0].continent_name}}</li>
-                <li>Country: {{data[0].country_name}}</li>
-                <li>Capital: {{data[0].location.capital}}</li>
-                <li>State: {{data[0].region_name}}</li>
-                <li>City: {{data[0].city}}</li>
-                <li>Zip: {{data[0].zip}}</li>
-            </ol>
+<!-- CORE CONTENT-->
+<main class="container-fluid">
+    <!-- REVERSE GEOCODE SECTION-->
+    <div class="d-md-flex flex-md-row">
+        <div class="col-12">
+            <div class="p-2">
+                <div class="card">
+                    <div class="card-body">
+                        <h3 class="card-title">REVERSE GEOCODE DATA</h3>
+                        <hr>
+                        <p>
+                            Below you will find the IP address and world coordinate position that was obtained from this
+                            browser.
+                        </p>
+                        <p class="card-text">
+                        <h4 class="badge bg-primary text-wrap">IP Address: {{data[0].ip}}</h4>
+                        <h4 class="badge bg-primary text-wrap">Latitude: {{ data[0].latitude }}</h4>
+                        <h4 class="badge bg-primary text-wrap">Longitude: {{ data[0].longitude }}</h4>
+                        </p>
+                    </div>
+                </div>
+            </div>
         </div>
+    </div>
 
-        <br>
-        <!-- This uses the initial geocode data to map the approximate location. -->
-        <div>
-            <h1>Location Mapper</h1>
-            <p>
-                The map link below can be used to pin point a visual representation based on the geocode payload information.
-                <br>
-                Further information is available in the details section of the map about the area region.
-            </p>
-            <a href="{{data[1].mapURL}}" target="_blank">Run Map</a> (Opens a new window...)
-            </br>
-            </br>
-            Maybe a button instead....(although, it may remotely send all your data to my email for validation - ;-))
-            <form method="post" target="_blank">
-                <input type="submit" value="Run Map" name="Run Map"/>
-            </form>
-
+    <!-- LOCATION INFORMATION SECTION -->
+    <div class="d-md-flex flex-md-row">
+        <div class="col-12">
+            <div class="p-2">
+                <div class="card">
+                    <div class="card-body">
+                        <h3 class="card-title">LOCATION INFORMATION</h3>
+                        <hr>
+                        <p class="card-text">
+                            In this section we parse the JSON payload to get further details about the geographic
+                            location
+                            the user is viewing from.
+                        <ul>
+                            <li>Continent: {{data[0].continent_name}}</li>
+                            <li>Country: {{data[0].country_name}}</li>
+                            <li>Capital: {{data[0].location.capital}}</li>
+                            <li>State: {{data[0].region_name}}</li>
+                            <li>City: {{data[0].city}}</li>
+                            <li>Zip: {{data[0].zip}}</li>
+                        </ul>
+                        </p>
+                    </div>
+                </div>
+            </div>
         </div>
+    </div>
 
-        </br>
-        <div>
-            <h3>Raw JSON</h3>
-            <textarea style="width:512px; height:128px">
-                {{data[0]}}
-            </textarea>
+    <!-- LOCATION MAPPER SECTION-->
+    <div class="d-md-flex flex-md-row">
+        <div class="col-12">
+            <div class="p-2">
+                <div class="card">
+                    <div class="card-body">
+                        <h3 class="card-title">Location Mapper</h3>
+                        <hr>
+                        <p class="card-text">
+                            The map link below can be used to pin point a visual representation based on the geocode
+                            payload
+                            information. Further information is available in the details section of the map about the
+                            area
+                            region.
+                        </p>
+                        <!--
+                        <p class="card-text">
+                            <a href="{{data[1].mapURL}}" target="_blank">Run Map</a> (Opens a new window...)
+                        </p>
+                        -->
+                        <p class="card-text">
+                            Maybe a button instead....(although, it may remotely send all your data to my email for
+                            validation -
+                            ;-))
+                        <form method="post" target="_blank">
+                            <input class="btn btn-primary" type="submit" value="Run Map" name="Run Map"/>
+                        </form>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- JSON SECTION -->
+    <div class="d-md-flex flex-md-row">
+        <div class="col-12">
+            <div class="p-2">
+                <div class="card" style="width: auto;">
+                    <div class="card-body">
+                        <h3 class="card-title">Payload Data (Raw JSON)</h3>
+                        <hr>
+                        <p class="card-text">
+                        <div class="col-auto">
+                                <textarea class="form-control">
+                                    {{data[0]}}
+                                </textarea>
+                        </div>
+                        </p>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 </main>

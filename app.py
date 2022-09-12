@@ -5,20 +5,20 @@ import mainman
 
 app = Flask(__name__)
 
-pageTitle = "GEOLOC APP"
+pageTitle = "PYGEO APP"
 
-DEBUG = True
+DEBUG = False
 
 
 # Pages
 @app.route('/', methods=['GET', 'POST'])
 def home():
-    print('Request Method: '+request.method)
+    print('Request Method: ' + request.method)
+    data = apiController.get_data()
     if request.method == 'POST':
         if request.form.get('Run Map') == 'Run Map':
             # pass
             print("POST: Running map...")
-            data = apiController.get_data()
             mailsys = mainman.mailman()
             mailsys.mail_setup()
             if mailsys.mail_login():
@@ -32,7 +32,9 @@ def home():
             return redirect(data[1].mapURL)
     elif request.method == 'GET':
         print("No postback (GET REQ), rendering base....")
-    return render_template("home.html", data=apiController.get_data())
+
+    # TODO - Consider better way to handle calls to apiController.get_data() given upstream API calls to IPStack.
+    return render_template("home.html", data=data)  # apiController.get_data()
     # return render_template("home.html", data=get_my_ip())
 
 

@@ -41,22 +41,28 @@ class IpStack:
 
     def getData(self):
         response = get(self.callUrl)
-        json_data = response.json()
-        print("JSON Payload Response: " + str(json_data))
-        self.latitude = str(json_data['latitude']).strip()
-        self.longitude = str(json_data['longitude']).strip()
-        self.mapURL = self.load_map_url()
-        print("Map Link: " + self.mapURL)
-        self.mapHtmlLink = '''
-        <html>
-            <body>
-                <a href="%s" target="_blank">Run Map</a></html>
-                </body>
-        </html>
-        ''' % self.mapURL
 
-        # for key, value in json_data.items():
-        #   print(key, ":", value)
+        # TODO - REMOVE DEBUGGING !!
+        #response = {'ip': '127.0.0.1', 'type': 'ipv4', 'continent_code': None, 'continent_name': None,'country_code': None, 'country_name': None, 'region_code': None, 'region_name': None, 'city': None,'zip': None, 'latitude': None, 'longitude': None,'location': {'geoname_id': None, 'capital': None, 'languages': None, 'country_flag': None,'country_flag_emoji': None, 'country_flag_emoji_unicode': None, 'calling_code': None,'is_eu': None}}
+        #json_data = {'ip': '127.0.0.1', 'type': 'ipv4', 'continent_code': None, 'continent_name': None, 'country_code': None, 'country_name': None, 'region_code': None, 'region_name': None, 'city': None, 'zip': None, 'latitude': None, 'longitude': None, 'location': {'geoname_id': None, 'capital': None, 'languages': None, 'country_flag': None, 'country_flag_emoji': None, 'country_flag_emoji_unicode': None, 'calling_code': None, 'is_eu': None}}
+
+        if response is not None:
+            json_data = response.json()
+            print("JSON Payload Response: " + str(json_data))
+            self.latitude = str(json_data['latitude']).strip()
+            self.longitude = str(json_data['longitude']).strip()
+            self.mapURL = self.load_map_url()
+            print("Map Link: " + self.mapURL)
+            self.mapHtmlLink = '''
+            <html>
+                <body>
+                    <a href="%s" target="_blank">Run Map</a></html>
+                    </body>
+            </html>
+            ''' % self.mapURL
+
+            # for key, value in json_data.items():
+            #   print(key, ":", value)
         return json_data
 
     def load_map_url(self):
